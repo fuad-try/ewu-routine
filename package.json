@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "A Node.js API to fetch EWU student routine",
   "main": "api/routine.js",
-  "type": "module", // Indicate ES Modules if you use `import` syntax
+  "type": "module",
   "scripts": {
     "start": "vercel dev"
   },
   "dependencies": {
-    "jsdom": "^24.x.x",  // Use a compatible version
-    "node-fetch": "^2.6.7" // Use v2 for CommonJS compatibility with Vercel's older Node.js runtimes
+    "jsdom": "^24.x.x",
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
     "vercel": "^32.x.x"
