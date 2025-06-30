@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/routine",
+      "destination": "/api/routine.js"
+    }
+  ],
+  "builds": [
+    {
+      "src": "api/routine.js",
+      "use": "@vercel/node"
+    }
+  ]
+}
