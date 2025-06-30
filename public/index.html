@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Class Routine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 10px;
+            color: #334e68;
+        }
+
+        .routine-container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            max-width: 900px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4a6fa5;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 2.2em;
+        }
+
+        .input-form {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #e0e7ed;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334e68;
+        }
+
+        .input-form input[type="text"],
+        .input-form input[type="password"] {
+            width: calc(100% - 40px);
+            max-width: 300px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #c8d3db;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .input-form button {
+            background-color: #4a6fa5;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .input-form button:hover {
+            background-color: #3e5e8e;
+        }
+
+
+        .routine-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+
+        .routine-table th,
+        .routine-table td {
+            padding: 15px 20px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .day-header {
+            background-color: #dbe4ee;
+            font-weight: 700;
+            color: #2c4a6a;
+            font-size: 1.15em;
+            border-radius: 10px 10px 0 0;
+            padding: 18px 20px;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .routine-table tr {
+            background-color: #f8fbfd;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .routine-table tr:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .routine-table tr td:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        .routine-table tr td:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .event-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 5px 0;
+            border-bottom: 1px dashed #e0e7ed;
+        }
+
+        .event-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .time {
+            font-weight: 500;
+            color: #5b7da6;
+            width: 120px;
+            flex-shrink: 0;
+        }
+
+        .activity {
+            font-weight: 400;
+            color: #334e68;
+            flex-grow: 1;
+            padding-left: 10px;
+        }
+
+        .activity span {
+            display: block;
+            line-height: 1.3;
+        }
+
+        .error-message {
+            color: #c0392b;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #e74c3c;
+            background-color: #fceceb;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+            display: none; /* Hidden by default */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .routine-container {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            .routine-table {
+                border-spacing: 0 10px;
+            }
+
+            .routine-table th,
+            .routine-table td {
+                padding: 12px 15px;
+            }
+
+            .day-header {
+                font-size: 1.05em;
+                padding: 15px 15px;
+            }
+
+            .event-item {
+                flex-direction: column;
+                margin-bottom: 10px;
+                padding: 3px 0;
+            }
+
+            .time {
+                width: auto;
+                margin-bottom: 2px;
+            }
+
+            .activity {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="routine-container">
+        <h1>My Class Routine</h1>
+
+        <div class="input-form">
+            <form id="routineForm">
+                <label for="username">Student ID:</label>
+                <input type="text" id="username" name="username" placeholder="e.g., 202XXXXXXX" required><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br>
+                <button type="submit">Get My Routine</button>
+            </form>
+        </div>
+
+        <div class="loader" id="loader"></div>
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+        <div id="routineOutput">
+            </div>
+    </div>
+
+    <script>
+        document.getElementById('routineForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const loader = document.getElementById('loader');
+            const errorMessageDiv = document.getElementById('errorMessage');
+            const routineOutputDiv = document.getElementById('routineOutput');
+
+            // Clear previous results and errors
+            errorMessageDiv.style.display = 'none';
+            errorMessageDiv.textContent = '';
+            routineOutputDiv.innerHTML = '';
+            loader.style.display = 'block'; // Show loader
+
+            // Replace with your deployed Vercel API URL
+            const API_URL = '/api/routine'; // Or 'https://your-vercel-app.vercel.app/api/routine'
+
+            try {
+                const response = await fetch(`${API_URL}?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`);
+                const data = await response.json();
+
+                if (!response.ok) {
+                    // Handle API errors
+                    errorMessageDiv.style.display = 'block';
+                    errorMessageDiv.textContent = `Error: ${data.error || 'Something went wrong.'} ${data.message || ''}`;
+                    return;
+                }
+
+                // Process and display routine data
+                let routineHtml = '<table class="routine-table">';
+                const displayDaysOrder = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+
+                displayDaysOrder.forEach(day => {
+                    if (data[day] && data[day].length > 0) {
+                        routineHtml += `<thead><tr><th colspan="2" class="day-header">${day}</th></tr></thead><tbody><tr><td colspan="2">`;
+                        data[day].forEach(classItem => {
+                            routineHtml += `
+                                <div class="event-item">
+                                    <span class="time">${classItem.Time}</span>
+                                    <span class="activity">
+                                        <span><strong>Course:</strong> ${classItem.CourseCode} (${classItem.CourseType}), Sec: ${classItem.Section}</span>
+                                        <span><strong>Faculty:</strong> ${classItem.Faculty} (${classItem.Email})</span>
+                                        <span><strong>Room:</strong> ${classItem.Room}</span>
+                                    </span>
+                                </div>
+                            `;
+                        });
+                        routineHtml += `</td></tr></tbody>`;
+                    }
+                });
+                routineHtml += '</table>';
+                routineOutputDiv.innerHTML = routineHtml;
+
+            } catch (error) {
+                console.error('Fetch error:', error);
+                errorMessageDiv.style.display = 'block';
+                errorMessageDiv.textContent = 'Failed to fetch routine. Please check your network connection or try again later.';
+            } finally {
+                loader.style.display = 'none'; // Hide loader
+            }
+        });
+    </script>
+</body>
+</html>
